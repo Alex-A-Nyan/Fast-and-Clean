@@ -20,24 +20,23 @@
   DIRECTORY=~
 
 # ----- MENU SCRIPT ----- #
-  clear
+  clear && sleep 0.5
   echo '  Do you want to do today?'
-  echo '    Choose your option:'
-  echo
-  echo 1 - Sweep the waste away
-  echo 2 - Get data about space
-  echo 3 - Install Homebrew
-  echo q - Quit
-  while [ $OPTION != 1 ] && [ $OPTION != 2 ] && [ $OPTION != 3 ] && [ $OPTION != q ]
+  echo '    Choose your option:' && echo
+  echo 1 - Sweep the waste away 🧹🚮
+  echo 2 - Get data about space 🪐
+  echo 3 - Install Homebrew 🍺
+  echo 4 - Update Homebrew 🍺
+  echo 5 - Shake your booty 🦜
+  echo q - Quit ❌✅
+  while [ $OPTION != 1 ] && [ $OPTION != 2 ] && [ $OPTION != 3 ] && [ $OPTION != 4 ] && [ $OPTION != 5 ] && [ $OPTION != q ]
     do
       if [ $ATTEMPT != 1 ]; then echo 'Please, follow to the available options'; fi
-      echo
       read OPTION
       ATTEMPT=$((ATTEMPT+1))
-      echo
     done
   if [ $OPTION != q ]; then echo "Let's get down to business then"; else echo "See 'ya =^_^="; fi
-  echo
+  echo && sleep 1
 
 # ----- SWEEPING SCRIPT ----- #
   if [ $OPTION == 1 ]; then
@@ -310,11 +309,28 @@
     echo Enter the Directory
     echo "(Press Enter to use Root Directory)"
     read DIRECTORY
-    git clone https://github.com/Homebrew/brew $DIRECTORY
-    eval "$($DIRECTORY/bin/brew shellenv)"
+    # git clone https://github.com/Homebrew/brew $DIRECTORY
+    git clone https://github.com/Homebrew/brew /Users/valeryje/goinfre/Homebrew
+    # eval "$($DIRECTORY/bin/brew shellenv)"
+    eval "$(/Users/valeryje/goinfre/Homebrew/bin/brew shellenv)"
     brew update --force --quiet
     chmod -R go-w "$(brew --prefix)/share/zsh"
     brew install lcov
     brew install gcovr
     brew install clang-format
+  fi
+
+# ----- UPDATE SCRIPT ----- #
+  if [ $OPTION == 4 ]; then
+    echo ----- UPDATING SETTINGS -----
+    sleep 1
+    eval "$(/Users/valeryje/goinfre/Homebrew/bin/brew shellenv)"
+    echo DONE
+  fi
+
+# ----- PARROT SCRIPT ----- #
+  if [ $OPTION == 5 ]; then
+    echo ----- PREPARE FOR THE SHOW -----
+    sleep 1
+    curl parrot.live
   fi
