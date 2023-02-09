@@ -1,58 +1,57 @@
-# Copyright 2022 valeryje
-#
-# This file contains Original Code created by Alexander Alexanyan
-# aka valeryje or Valery Jennette or Alex-A-Nyan or alale5.
-#
-# The Original Code and all software distributed in the process of
-# participation on learning by experimental programming educational method.
-# The whole methodology was developed and distributed by
-# Autonomous non-profit organization «School 21» (ANO «School 21»). 
-#
-# Redistribution and use of this file, its parts, or entire project
-# are permitted by confirmation of its original creator.
-
-#====================================================================================================#
 #!/bin/bash/
 
 # ----- VARIABLES ----- #
-  OPTION=0
-  ATTEMPT=1
-  DIRECTORY=~
+  RED=$'\033[0;31m'
+  GREEN=$'\033[0;32m'
+  YELLOW=$'\033[0;33m'
+  BLUE=$'\033[0;34m'
+  MAGENTA=$'\033[0;35m'
+  RESET=$'\033[0;m'
 
-# ----- MENU SCRIPT ----- #
-  clear && sleep 0.5
-  echo '  Do you want to do today?'
-  echo '    Choose your option:' && echo
-  echo 1 - Sweep the waste away 🧹🚮
-  echo 2 - Get data about space 🪐
-  echo 3 - Install Homebrew 🍺
-  echo 4 - Update Homebrew 🍺
-  echo 5 - Shake your booty 🦜
-  echo q - Quit ❌✅
-  while [ $OPTION != 1 ] && [ $OPTION != 2 ] && [ $OPTION != 3 ] && [ $OPTION != 4 ] && [ $OPTION != 5 ] && [ $OPTION != q ]
+# ----- SCRIPT MENU ----- #
+  clear && sleep 0.1
+  echo '         What do you want to do?'
+  echo '           Choose your option:'
+  echo ------------------------------------------
+  echo 0 - 🔒 Settings
+  echo 1 - 🧹 Clear the memory               #red
+  echo 2 - 🪐 Memory space information     #green
+  echo 3 - 🍺 Install Homebrew              #blue
+  echo 4 -  Update Homebrew Directory    #magenta
+  echo 5 - 🦜 Shake your booty            #yellow
+  echo q - ❌ Quit
+  echo ------------------------------------------
+  read OPTION
+  while [ "$OPTION" != 0 ] && [ "$OPTION" != 1 ] && [ "$OPTION" != 2 ] && [ "$OPTION" != 3 ] && [ "$OPTION" != 4 ] && [ "$OPTION" != 5 ] && [ "$OPTION" != q ]
     do
-      if [ $ATTEMPT != 1 ]; then echo 'Please, follow to the available options'; fi
+      sleep 0.2
+      echo 'Please, follow to the available options'
+      echo ------------------------------------------
       read OPTION
-      ATTEMPT=$((ATTEMPT+1))
     done
-  if [ $OPTION != q ]; then echo "Let's get down to business then"; else echo "See 'ya =^_^="; fi
-  echo && sleep 1
+  sleep 0.2
+  if [ "$OPTION" != q ]
+    then
+    echo "Let's get down to business then"
+    echo ------------------------------------------
+    sleep 1.5 && clear
+    else
+    echo "See 'ya =^_^="
+    echo ------------------------------------------
+  fi
 
-# ----- SWEEPING SCRIPT ----- #
-  if [ $OPTION == 1 ]; then
-    echo ----- SWEEPING -----
-    clear
-    # Colors
-    blue=$'\033[0;34m'
-    cyan=$'\033[1;96m'
-    reset=$'\033[0;39m'
+# ----- CLEARING SCRIPT ----- #
+  if [ "$OPTION" == 1 ]
+    then
+    echo $RED"----- CLEARING THE SPACE -----"$RESET
+    sleep 1
     # Avoid boring prefix in du/df/etc
     cd $HOME
     initial_used_space=$(df -h $HOME | grep -v 'Filesystem' | awk '{ printf("%f", $3) }')
     # Show current used space
     initial_df=$(df -h . | grep --color=always -E "Size|Used|Avail|Capacity|[0-9]*\.*[0-9]*Mi|[0-9]*\.*[0-9]*Gi|[0-9]+\.*[0-9]+% |$")
-    echo "${blue}Current space:\n${reset}${initial_df}${reset}"
-    echo "${blue}\nHome folder:${reset}"
+    echo $RED"Current space:\n"$RESET${initial_df}$RESET
+    echo $RED"\nHome folder:"$RESET
 
     echo ""
     echo '----------------------'
@@ -273,64 +272,58 @@
     rm -rf ~/Pictures/*
     rm -rf ~/.Trash/*
     cp ~/Library/Icon? ~/.Trash
-    df -h | grep Users | awk '{print $2 " = " $3 " + "  $4}'
-    echo '----------------------'
-    echo "Clean Success"
-    clear
-    df -h | grep Users | awk '{print $2 " = " $3 " + "  $4}'
-    echo '----------------------'
-    sleep 1
-    echo "I'll close in 3.."
-    sleep 1
-    clear
-    df -h | grep Users | awk '{print $2 " = " $3 " + "  $4}'
-    echo '----------------------'
-    echo "I'll close in 2.."
-    sleep 1
-    clear
-    df -h | grep Users | awk '{print $2 " = " $3 " + "  $4}'
-    echo '----------------------'
-    echo "I'll close in 1.."
-    sleep 1
-    clear
-  fi
 
-# ----- FINDER SCRIPT ----- #
-  if [ $OPTION == 2 ]; then
-    echo "\033[32m=================================================================================\033[0m"
-    echo "\033[32mAvailable now:\033[0m"
-    df -h ~
-    echo "\033[32m=================================================================================\033[0m"
-  fi
 
-# ----- HOMEBREW SCRIPT ----- #
-  if [ $OPTION == 3 ]; then
-    echo ----- INSTALLATION -----
-    echo Enter the Directory
-    echo "(Press Enter to use Root Directory)"
-    read DIRECTORY
-    # git clone https://github.com/Homebrew/brew $DIRECTORY
-    git clone https://github.com/Homebrew/brew /Users/valeryje/goinfre/Homebrew
-    # eval "$($DIRECTORY/bin/brew shellenv)"
-    eval "$(/Users/valeryje/goinfre/Homebrew/bin/brew shellenv)"
-    brew update --force --quiet
-    chmod -R go-w "$(brew --prefix)/share/zsh"
-    brew install lcov
-    brew install gcovr
-    brew install clang-format
-  fi
-
-# ----- UPDATE SCRIPT ----- #
-  if [ $OPTION == 4 ]; then
-    echo ----- UPDATING SETTINGS -----
+    clear
+    echo $RED"----- CLEARING THE SPACE -----"$RESET
     sleep 1
-    eval "$(/Users/valeryje/goinfre/Homebrew/bin/brew shellenv)"
+    df -h | grep Users | awk '{print $2 " = " $3 " + "  $4}'
+    sleep 1
     echo DONE
   fi
 
-# ----- PARROT SCRIPT ----- #
-  if [ $OPTION == 5 ]; then
-    echo ----- PREPARE FOR THE SHOW -----
+# ----- MEMORY CHECK ----- #
+  if [ "$OPTION" == 2 ]
+    then
+    echo $GREEN"----- MEMORY STATS -----"$RESET
+    sleep 1
+    echo "Available now:"
+    df -h ~
+  fi
+
+# ----- HOMEBREW INSTALLATION ----- #
+  if [ "$OPTION" == 3 ]
+    then
+    echo $BLUE"----- HOMEBREW INSTALLATION -----"$RESET
+    sleep 1
+    echo Enter the Directory
+    echo "(Press Enter to use Root Directory)"
+    read DIRECTORY
+    DIRECTORY=$'/Users/$(whoami)/goinfre/Homebrew'
+    git clone https://github.com/Homebrew/brew $DIRECTORY
+    eval `$($DIRECTORY/bin/brew shellenv)`
+    brew update --force --quiet
+    chmod -R go-w "$(brew --prefix)/share/zsh"
+    brew install lcov
+    brew install clang-format
+    echo $RED"----- CLEARING THE SPACE -----"$RESET
+    sleep 1
+    echo DONE
+  fi
+
+# ----- HOMEBREW UPDATING ----- #
+  if [ "$OPTION" == 4 ]
+    then
+    echo $MAGENTA"----- HOMEBREW UPDATING -----"$RESET
+    eval `$($DIRECTORY/bin/brew shellenv)`
+    sleep 1
+    echo DONE
+  fi
+
+# ----- FUN SCRIPT ----- #
+  if [ "$OPTION" == 5 ]
+    then
+    echo $YELLOW"----- PREPARE FOR THE SHOW -----"$RESET
     sleep 1
     curl parrot.live
   fi
