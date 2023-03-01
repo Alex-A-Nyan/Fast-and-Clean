@@ -29,7 +29,7 @@
       echo ------------------------------------------
       read OPTION
     done
-  sleep 0.2
+  sleep 0.3
   if [ "$OPTION" != q ]
     then
     echo "Let's get down to business then"
@@ -38,6 +38,7 @@
     else
     echo "See 'ya =^_^="
     echo ------------------------------------------
+    sleep 0.5
   fi
 
 # ----- CLEARING SCRIPT ----- #
@@ -50,6 +51,7 @@
     initial_used_space=$(df -h $HOME | grep -v 'Filesystem' | awk '{ printf("%f", $3) }')
     # Show current used space
     initial_df=$(df -h . | grep --color=always -E "Size|Used|Avail|Capacity|[0-9]*\.*[0-9]*Mi|[0-9]*\.*[0-9]*Gi|[0-9]+\.*[0-9]+% |$")
+    before=$(df -h . | grep --color=always -E "Size|Used|Avail|Capacity|[0-9]*\.*[0-9]*Mi|[0-9]*\.*[0-9]*Gi|[0-9]+\.*[0-9]+% |$")
     echo $RED"Current space:\n"$RESET${initial_df}$RESET
     echo $RED"\nHome folder:"$RESET
 
@@ -277,6 +279,7 @@
     clear
     echo $RED"----- CLEARING THE SPACE -----"$RESET
     sleep 1
+    echo $RED"before:\n"$RESET${before}$RESET
     df -h | grep Users | awk '{print $2 " = " $3 " + "  $4}'
     sleep 1
     echo DONE
@@ -294,19 +297,22 @@
 # ----- HOMEBREW INSTALLATION ----- #
   if [ "$OPTION" == 3 ]
     then
-    echo $BLUE"----- HOMEBREW INSTALLATION -----"$RESET
+    echo $BLUE"----- HOMEBREW INSTALLATION -----"$RESET 
     sleep 1
     echo Enter the Directory
     echo "(Press Enter to use Root Directory)"
     read DIRECTORY
-    DIRECTORY=$'/Users/$(whoami)/goinfre/Homebrew'
+    if [ "$DIRECTORY" == '' ]
+      then
+      DIRECTORY=$'/Users/$(whoami)/goinfre/Homebrew'
+    fi
     git clone https://github.com/Homebrew/brew $DIRECTORY
     eval `$($DIRECTORY/bin/brew shellenv)`
     brew update --force --quiet
     chmod -R go-w "$(brew --prefix)/share/zsh"
     brew install lcov
     brew install clang-format
-    echo $RED"----- CLEARING THE SPACE -----"$RESET
+    echo $RED"----- HOMEBREW INSTALLATION -----"$RESET
     sleep 1
     echo DONE
   fi
