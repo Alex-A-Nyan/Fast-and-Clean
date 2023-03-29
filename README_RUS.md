@@ -1,4 +1,4 @@
-# SystemSetter. Beta 1.1
+# SystemSetter. Beta 1.2
 
 ![SystemSetter](Technical/Fast_and_Clean.png)
 
