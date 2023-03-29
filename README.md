@@ -17,8 +17,8 @@ The script was designed to be used on iMac in School21 clusters only.
 
 ## Technical information
 
-Current version supports cleaning out space according to specific characteristics.
-A common user of iMac in educational purposes considered to use Google Chrome or Safari browser, standart terminal, VSCode, Xcode, iTerm (version 2), Docker and RocketTeam Apps.
-Also current configuration of the script may show unpredictable behavior with OH-MY-ZSH-extension is installed.
-The script won't interact with any manually installed extensions (including VSCode extensions).
-In case then script don't show the desired effectiveness, it is advised to use "🐘 Find an elephant in the room" option ("7"). Using that information you can make your own decisions to delete some of the unnecessary extensions, programms and other app, or find "closed" programms, using and running your PC memory in background mode.
+Current version supports cleaning out space according to specific characteristics. </p>
+A common user of iMac in educational purposes considered to use Google Chrome or Safari browser, standart terminal, VSCode, Xcode, iTerm (version 2), Docker and RocketTeam Apps.</p>
+Also current configuration of the script may show unpredictable behavior with OH-MY-ZSH-extension is installed.</p>
+The script won't interact with any manually installed extensions (including VSCode extensions).</p>
+<!-- In case then script don't show the desired effectiveness, it is advised to use "🐘 Find an elephant in the room" option ("7"). Using that information you can make your own decisions to delete some of the unnecessary extensions, programms and other app, or find "closed" programms, using and running your PC memory in background mode. -->
