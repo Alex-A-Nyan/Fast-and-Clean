@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+
+# ----- COLOURS ----- #
+BLACK_FC='\033[30m'
+RED_FC='\033[31m'
+GREEN_FC='\033[32m'
+YELLOW_FC='\033[33m'
+BLUE_FC='\033[34m'
+MAGENTA_FC='\033[35m'
+CYAN_FC='\033[36m'
+WHITE_FC='\033[37m'
+DEFAULT_FC='\033[0m'
