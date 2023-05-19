@@ -14,7 +14,7 @@ function show_menu()
     printf "2 - 🪐 Memory Space Information\n"
     printf "3 - 🍺 Install Homebrew\n"
     printf "4 - 🍺 Update Homebrew\n"
-    printf "5 - 🦜 Shake Your Booty\n"
+    printf "5 - 🦜 Dancing Parrot Show\n"
     printf "q - ❌ Quit\n"
     print_42line_nl
 }
